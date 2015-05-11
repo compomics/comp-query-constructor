@@ -7,7 +7,7 @@
 
 ## Project Description
 
-The compomics query constructor is a [http://squirrel-sql.sourceforge.net/](SQuirreL SQL) plugin. It simplifies the creating of queries with a lot of "columnName IN ('param1', 'param2', 'param3', ...)" and/or "columnName like '%param1%' or columnName like '%param2%' or columnName like '%param3%' ...".
+The compomics query constructor is a [SQuirreL SQL](http://squirrel-sql.sourceforge.net/) plugin. It simplifies the creating of queries with a lot of `columnName IN ('param1', 'param2', 'param3', ...)` and/or `columnName like '%param1%' or columnName like '%param2%' or columnName like '%param3%' ...`.
 
 This is work in progress.
 
