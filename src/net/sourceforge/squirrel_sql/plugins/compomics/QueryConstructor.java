@@ -55,22 +55,25 @@ public class QueryConstructor {
         if (!queryInput.getEqualsParams().isEmpty() || !queryInput.getLikeParams().isEmpty() || !queryInput.getFromParams().isEmpty() || !queryInput.getToParams().isEmpty() || !queryInput.getBetweenParams().isEmpty()) {
             query.append(WHERE);
             query.append(constructEqualsParamsPart());
-            if (!queryInput.getLikeParams().isEmpty()) {
+            if (!queryInput.getEqualsParams().isEmpty()) {
                 query.append(AND);
             }
             query.append(constructLikeParamsPart());
-            if (!queryInput.getFromParams().isEmpty()) {
+            if (!queryInput.getLikeParams().isEmpty()) {
                 query.append(AND);
             }
             query.append(constructFromParamsPart());
-            if (!queryInput.getToParams().isEmpty()) {
+            if (!queryInput.getFromParams().isEmpty()) {
                 query.append(AND);
             }
             query.append(constructToParamsPart());
-            if (!queryInput.getBetweenParams().isEmpty()) {
+            if (!queryInput.getToParams().isEmpty()) {
                 query.append(AND);
             }
             query.append(constructBetweenParamsPart());
+            if(query.lastIndexOf(AND) == (query.length() - 4)){
+                query.delete(query.lastIndexOf(AND), query.length());
+            }
         }
         if (!queryInput.getOrderParams().isEmpty()) {
             query.append(constructOrderParamsPart());
@@ -235,12 +238,12 @@ public class QueryConstructor {
         String tableName = "testTableName";
 
         Map<String, List<String>> plainParams = new HashMap<String, List<String>>();
-        List<String> plainParams1 = Arrays.asList("p11", "p12");
-        plainParams.put("plain1", plainParams1);
-        List<String> plainParams2 = Arrays.asList("p21", "p22");
-        plainParams.put("plain2", plainParams2);
-        List<String> plainParams3 = Arrays.asList("p3");
-        plainParams.put("plain3", plainParams3);
+//        List<String> plainParams1 = Arrays.asList("p11", "p12");
+//        plainParams.put("plain1", plainParams1);
+//        List<String> plainParams2 = Arrays.asList("p21", "p22");
+//        plainParams.put("plain2", plainParams2);
+//        List<String> plainParams3 = Arrays.asList("p3");
+//        plainParams.put("plain3", plainParams3);
 
         Map<String, List<String>> anyParams = new HashMap<String, List<String>>();
         List<String> anyParams1 = Arrays.asList("a11", "a12");
@@ -265,8 +268,8 @@ public class QueryConstructor {
         betweenParams.put("between2", betweenParams2);
 
         Map<String, SortListModel.Sorting> orderParams = new HashMap<String, SortListModel.Sorting>();
-//        orderParams.put("order1", SortListModel.Sorting.ASC);
-//        orderParams.put("order2", SortListModel.Sorting.DESC);
+        orderParams.put("order1", SortListModel.Sorting.ASC);
+        orderParams.put("order2", SortListModel.Sorting.DESC);
 
         QueryInput queryInput = new QueryInput();
         queryInput.setSelectClause(selectClause);
